@@ -36,7 +36,7 @@ Customer No: {accountNumber} will pay with --> {paymentMethod}
 
 ## Technologies Used
 
-Java 17+
-Spring Boot
-Spring Web (REST)
+Java 17+, 
+Spring Boot, 
+Spring Web (REST), 
 No database (in-memory list)
