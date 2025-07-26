@@ -1,7 +1,8 @@
 package com.ntg.customermanagementapi.Controller;
 
 import com.ntg.customermanagementapi.Entity.Customer;
-import com.ntg.customermanagementapi.Service.CustomerService;
+import com.ntg.customermanagementapi.Service.CustomerService.CustomerService;
+import com.ntg.customermanagementapi.Service.PaymentService.PaymentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +11,10 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
-
-    public CustomerController(CustomerService customerService) {
+    private final PaymentService paymentService;
+    public CustomerController(CustomerService customerService, PaymentService paymentService) {
         this.customerService = customerService;
+        this.paymentService = paymentService;
     }
 
     @GetMapping("/customers")
@@ -42,4 +44,11 @@ public class CustomerController {
         return customerService.getCustomerByName(name);
     }
 
+    //----------------------------------------------------------------------------------------------------------
+
+
+    @PostMapping("/payment")
+    public String paymentProcess(@RequestParam Long accountNumber,@RequestParam String paymentMethod) {
+        return paymentService.paymentProcess(accountNumber,paymentMethod);
+    }
 }
